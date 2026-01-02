@@ -1,0 +1,26 @@
+# API INTEGRATION + DATA VISUALIZATION (SINGLE CODE)
+
+import requests
+import matplotlib.pyplot as plt
+
+# Step 1: API URL (Sample public API)
+url = "https://api.coindesk.com/v1/bpi/currentprice.json"
+
+# Step 2: API Request
+response = requests.get(url)
+data = response.json()
+
+# Step 3: Extract required data
+currencies = ["USD", "GBP", "EUR"]
+prices = [
+    data["bpi"]["USD"]["rate_float"],
+    data["bpi"]["GBP"]["rate_float"],
+    data["bpi"]["EUR"]["rate_float"]
+]
+
+# Step 4: Data Visualization
+plt.bar(currencies, prices)
+plt.title("Bitcoin Price in Different Currencies")
+plt.xlabel("Currency")
+plt.ylabel("Price")
+plt.show()
